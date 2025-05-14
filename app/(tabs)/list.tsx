@@ -1,16 +1,44 @@
-import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+
+import {SafeAreaView, StyleSheet, Text, View, FlatList} from 'react-native';
+// import dataErrado from "@/constants/dataErrado.json"
+import data from '@/constants/data'
+import { Item } from '@/components/item';
 
 
-export default function TabThreeScreen() {
+export default function List() {
     return(
         <>
-        <Text>Terceira pagina</Text>
-        </>
+       <View style={styles.center}>
+            <Text>Lista</Text>
+       </View>
+       <SafeAreaView style={styles.container}>
+        <FlatList style={styles.back} data={data} renderItem={({item}) => (
+            <Item name={item.nome} age={item.idade} date={item.data} image={item.images}/>
+    )}
+         keyExtractor={(item) => item.id}
+     />
+            </SafeAreaView>
+     </>
     )
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
+    center: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        shadowColor: 'black',
+        shadowOpacity: {width: 0, heith: 2},
+        shadowRadius: 10,
+        paddingVertical: 20,
+    },
 
+    container: {
+        flex: 1,
+    },
+
+    back: {
+        paddingHorizontal: 20
+    }
 })
 
